@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>List Item · Tailwind spike</title>
+    <link rel="stylesheet" href="./dist/styles.css">
+    <script type="module" src="./demo.js"></script>
+  </head>
+  <body class="min-h-dvh bg-[var(--demo-canvas)] text-[var(--demo-ink)] antialiased">
+    <main class="mx-auto grid max-w-xl gap-7 px-5 py-12 sm:px-8 sm:py-16">
+      <h1 class="text-3xl font-semibold tracking-tight">List Item</h1>
+      <div class="flex flex-wrap items-end gap-4">
+        <label class="grid gap-1.5 text-sm font-medium">
+          Theme
+          <select id="theme" class="rounded-lg border border-[var(--demo-line)] bg-[var(--surface-base)] px-3 py-2">
+            <option value="light">Lantern Light</option>
+            <option value="dark">Lantern Dark</option>
+          </select>
+        </label>
+        <label class="grid gap-1.5 text-sm font-medium">
+          Density
+          <select id="density" class="rounded-lg border border-[var(--demo-line)] bg-[var(--surface-base)] px-3 py-2">
+            <option value="compact">Compact</option>
+            <option value="breathable">Breathable</option>
+          </select>
+        </label>
+      </div>
+
+      <ul id="examples" aria-label="List Item examples" class="overflow-hidden rounded-xl border border-[var(--demo-line)] divide-y divide-[var(--demo-line)]"></ul>
+      <p id="result" role="status" class="min-h-5 text-sm text-[var(--demo-muted)]">Activate the first row to test its action.</p>
+    </main>
+  </body>
+</html>
