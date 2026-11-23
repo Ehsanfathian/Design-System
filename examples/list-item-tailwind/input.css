@@ -1,0 +1,68 @@
+@import "tailwindcss" source(none);
+@source "./index.html";
+@source "./list-item.js";
+@source "./demo.js";
+
+:root {
+  color-scheme: light;
+  --core-white: #fff;
+  --core-black: #000;
+  --core-neutral-000: #f7fafc;
+  --core-neutral-170: #131517;
+  --core-blue-110: #2e8aca;
+  --core-blue-100: #369fe4;
+  --core-0px: 0px;
+  --core-1px: 1px;
+  --core-8px: 8px;
+  --core-12px: 12px;
+  --core-16px: 16px;
+  --core-20px: 20px;
+  --core-opacity-50: 0.5;
+
+  --surface-base: var(--core-white);
+  --surface-sunken: var(--core-neutral-000);
+  --focus-ring-color: var(--core-blue-110);
+  --focus-ring-width: var(--core-1px);
+  --focus-ring-offset: var(--core-0px);
+  --space-inset-md: var(--core-16px);
+  --space-inset-lg: var(--core-20px);
+  --space-gap-sm: var(--core-8px);
+  --space-gap-md: var(--core-12px);
+  --opacity-disabled: var(--core-opacity-50);
+
+  --demo-canvas: #eff2f6;
+  --demo-ink: #20242c;
+  --demo-muted: #526071;
+  --demo-line: #d4dae3;
+  --demo-chip: #e6edf5;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface-base: var(--core-neutral-170);
+  --surface-sunken: var(--core-black);
+  --focus-ring-color: var(--core-blue-100);
+  --demo-canvas: #0c0e10;
+  --demo-ink: #f5f7fa;
+  --demo-muted: #a6b3c1;
+  --demo-line: #343b45;
+  --demo-chip: #272f38;
+}
+
+[data-list-item] {
+  --list-item-filled-bg-default: var(--surface-base);
+  --list-item-filled-bg-hover: var(--surface-sunken);
+  --list-item-filled-bg-pressed: var(--surface-sunken);
+  --list-item-filled-bg-loading: var(--surface-base);
+  --list-item-filled-bg-disabled: var(--surface-base);
+  --list-item-focus-ring-color: var(--focus-ring-color);
+  --list-item-focus-ring-width: var(--focus-ring-width);
+  --list-item-focus-ring-offset: var(--focus-ring-offset);
+  --list-item-density-compact-padding-inline: var(--space-inset-md);
+  --list-item-density-compact-padding-block: var(--space-inset-md);
+  --list-item-density-compact-gap: var(--space-gap-sm);
+  --list-item-density-breathable-padding-inline: var(--space-inset-md);
+  --list-item-density-breathable-padding-block: var(--space-inset-lg);
+  --list-item-density-breathable-gap: var(--space-gap-md);
+  --list-item-content-opacity-disabled: var(--opacity-disabled);
+}

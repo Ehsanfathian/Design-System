@@ -65,7 +65,7 @@ Disabled
 - `Pressed` is a temporary pointer or touch state; it is not `Selected` or current navigation state.
 - `Focused` may coexist with a future persistent `Selected` state.
 - Focus adds a semantic focus indicator. It does not require a distinct background token when the background does not change.
-- If Pressed has no distinct behavior or visual treatment, remove it rather than keeping a decorative state matrix.
+- In the current pilot, actionable items expose a transient Pressed state and share the same surface treatment as Hover. Product implementations still validate press feedback on their target input methods.
 
 ## Focus contract
 
@@ -130,12 +130,12 @@ There is no `list-item/filled/bg/focus` token because Focus currently adds a foc
 ```text
 list-item/filled/bg/default  → surface/base
 list-item/filled/bg/hover    → surface/sunken
-list-item/filled/bg/pressed  → Open
+list-item/filled/bg/pressed  → surface/sunken
 list-item/filled/bg/loading  → surface/base
 list-item/filled/bg/disabled → surface/base
 ```
 
-Pressed may map to `surface/sunken` if the accepted visual treatment matches Hover. Do not create a new Alias before the semantic need is proven.
+The pilot mapping is recorded in [OD-005](../open-decisions.md#od-005) and verified in [the Figma Spec](https://www.figma.com/design/5WVFftNosYXY3KIkkGhXo4/Lantern-V2?node-id=52274-3691) for Lantern Light and Dark.
 
 ### Density
 
@@ -211,7 +211,6 @@ Trend, mini chart, balance, and price semantics belong to their Domain component
 
 ## Open decisions
 
-- Final Pressed visual treatment and whether the state remains in the pilot
 - Whether a persistent Selected state belongs in a later Base contract
 - Exact focus-ring Core values and platform implementation
 - Final accessibility role by usage context; List Item container alone must not force one role for every Domain composition
