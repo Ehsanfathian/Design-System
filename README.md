@@ -31,6 +31,7 @@ Foundations owns `Core` and `Alias`. A component library or product owns its com
 | [`references/token-architecture.md`](references/token-architecture.md) | Core → Alias → CST token contract |
 | [`references/surface-model.md`](references/surface-model.md) | Canonical Surface Alias taxonomy |
 | [`references/component-contracts.md`](references/component-contracts.md) | Required component contract fields and state rules |
+| [`references/component-workflow.md`](references/component-workflow.md) | Pilot workflow for component tokens, Figma bindings, verification, and Spec hand-off |
 | [`references/multi-product-model.md`](references/multi-product-model.md) | Product autonomy within a shared design language |
 | [`references/base-domain-ownership.md`](references/base-domain-ownership.md) | Base, Domain, Pattern, and Product ownership boundaries |
 | [`references/governance.md`](references/governance.md) | Ownership, decision, promotion, and registry rules |
