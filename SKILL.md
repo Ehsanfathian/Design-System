@@ -25,6 +25,7 @@ Use this repository as the source of truth for design-system architecture and co
 - For Surface semantics, read [`references/surface-model.md`](references/surface-model.md).
 - For Alias Color branch scope, current Core state, product modes, contracts, and open decisions, read [`references/alias-color.md`](references/alias-color.md) after the token and Surface references.
 - For anatomy, states, slots, accessibility, and contract fields, read [`references/component-contracts.md`](references/component-contracts.md).
+- For repeatable Figma component audit, token mapping, verification, and Spec hand-off, read [`references/component-workflow.md`](references/component-workflow.md).
 - For multiple products or themes, read [`references/multi-product-model.md`](references/multi-product-model.md).
 - To classify Base, Domain, Pattern, or Product-specific UI, read [`references/base-domain-ownership.md`](references/base-domain-ownership.md).
 - For approval, ownership, registries, or promotion to a shared package, read [`references/governance.md`](references/governance.md).
