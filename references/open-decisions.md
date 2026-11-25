@@ -15,9 +15,9 @@ This registry prevents unresolved choices from becoming accidental policy. Owner
 | OD-009 | How is the CST API versioned and how are breaking changes propagated? | Design System + Engineering | Before the first breaking CST change | Open |
 | OD-010 | What automated validation links design variables, code tokens, and component properties? | Frontend Chapter + Design System | Before enforcement at scale | Open |
 | OD-011 | What quantitative adoption and migration targets are realistic? | Pilot owners | After Inventory and pilot baseline | Open |
-| OD-012 | What Core primitive does each Alias Color reference in Lantern, Karat, and Prime, and do the resulting contextual pairs meet contrast requirements? | Design System | Before accepting Alias Color mode mappings | Open |
+| OD-012 | Which [six-Mode Core mappings](alias-color-mapping.md) and contrast pairs are approved, including the open Prime Success gap? | Design System | Before accepting Alias Color mode mappings | Open |
 | OD-013 | What approval and migration process governs adding, renaming, or removing an Alias Color product mode? | Design System + affected product owners | Before changing the current Alias Color mode set | Open |
-| OD-014 | Which intensity adjectives and ordering criteria apply to each Alias Color family and role, including Surface and translucent backgrounds? | Design System | Before creating or naming the new intensity-based aliases | Open |
+| OD-014 | Which intensity levels and ordering criteria apply to strokes and translucent color roles beyond the recorded opaque Bg, Fg, and Surface scale? | Design System | Before mapping the remaining stroke and translucent color roles | Open |
 | OD-015 | Which published Alias Color paths and keys require compatibility, and what evidence allows each legacy alias to be retired? | Design System + affected library owners | Before renaming, hiding, or removing a published legacy alias | Open |
 
 ## Resolution format
