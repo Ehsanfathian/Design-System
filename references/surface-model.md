@@ -2,64 +2,26 @@
 
 ## Status
 
-**Accepted**
+**Accepted** for the host-surface boundary and the intensity-based naming model. Exact levels and Core assignments remain **Open**. Previously accepted role names remain supported during compatibility review.
 
-Surface Alias tokens describe a visual semantic role in the current context. They do not describe a component or interaction state.
+## Host surfaces
 
-## Canonical taxonomy
+A Surface hosts elements within a composition. A Background sits behind the foreground content of an element. A composition may contain both. For example, a transparent element background leaves its foreground in visual contact with the host surface. Check that pair on the resolved host color.
 
-| Alias | Meaning |
+Use `Color/surface/<intensity>` for the new Surface vocabulary. The intensity identifies a level in the Surface scale. The consuming contract decides which level to use for the page, card, recessed area, or other part of the composition. A surface level can resolve to different Core colors by Mode while keeping its defined position in the scale. The [Alias Color contract](alias-color.md) defines the scale and mapping requirements.
+
+## Compatibility vocabulary
+
+The following paths describe the previous role-based model. Their current meanings remain available to existing references during migration.
+
+| Path | Existing meaning |
 | --- | --- |
 | `surface/base` | Base surface of the current context |
-| `surface/raised` | Surface one level above the base context |
-| `surface/sunken` | Recessed or inset surface relative to its environment |
-| `surface/floating` | Independent floating surface such as a popover or dropdown |
+| `surface/raised` | Surface one level above its surroundings |
+| `surface/sunken` | Recessed or inset surface relative to its surroundings |
+| `surface/floating` | Independent floating surface |
 | `surface/inverse` | Contrast reversed relative to the current theme |
-| `surface/fixed/light` | Always light, independent of the current theme |
-| `surface/fixed/dark` | Always dark, independent of the current theme |
+| `surface/fixed/light` | The same light polarity across themes |
+| `surface/fixed/dark` | The same dark polarity across themes |
 
-## Inverse versus fixed
-
-```text
-surface/inverse
-Light mode → dark surface
-Dark mode  → light surface
-
-surface/fixed/light
-Light mode → light surface
-Dark mode  → light surface
-
-surface/fixed/dark
-Light mode → dark surface
-Dark mode  → dark surface
-```
-
-## State boundary
-
-Do not create system-wide Alias tokens such as:
-
-```text
-surface/hover
-surface/pressed
-surface/selected
-surface/disabled
-```
-
-These names mix component state with reusable visual meaning. The component CST chooses which Surface Alias a state consumes:
-
-```text
-list-item/filled/bg/hover
-    → surface/sunken
-```
-
-This preserves the separation:
-
-```text
-CST   = component behavior and decision
-Alias = reusable visual semantic role
-Core  = raw value
-```
-
-## Open implementation choices
-
-The exact Core value for each Surface Alias may differ by theme or product and must be validated for contrast. The taxonomy is accepted; specific theme values and elevation mechanics remain implementation decisions unless recorded separately.
+The previous `inverse` role changes polarity with theme. The previous `fixed` roles keep their polarity. Review each case against the new scale and its Mode values before replacing a published reference. A legacy role may require different levels in different consumers. A replacement needs a confirmed mapping and compatibility review under [OD-015](open-decisions.md).
