@@ -13,7 +13,7 @@ CST        How does this component use those meanings?
 Component  How is the interface assembled and how does it behave?
 ```
 
-Example:
+Existing compatibility example:
 
 ```text
 Core: neutral/50
@@ -41,7 +41,7 @@ Raw values and scales. Examples include a color ramp, spacing values, opacity va
 
 ### Alias
 
-Reusable semantic roles shared across multiple components or contexts. Examples:
+Reusable semantic roles shared across multiple components or contexts. The [Alias Color contract](alias-color.md) defines the family, role, and intensity model for new color aliases. Existing color paths listed here are compatibility examples.
 
 ```text
 surface/base
@@ -65,6 +65,8 @@ text-input/focus-ring/color
 The lifecycle of a CST follows the component API. If states, anatomy, or variants change, the CST may change with them.
 
 ## Naming rules
+
+- Use the [Alias Color naming model](alias-color.md) for new color aliases, with a reusable role and an intensity adjective.
 
 - Prefer semantic intent over raw value names outside Core.
 - Preserve component context in CST names.
