@@ -17,7 +17,7 @@ This registry prevents unresolved choices from becoming accidental policy. Owner
 | OD-011 | What quantitative adoption and migration targets are realistic? | Pilot owners | After Inventory and pilot baseline | Open |
 | OD-012 | Which [six-Mode Core mappings](alias-color-mapping.md) and contrast pairs are approved, including the open Prime Success gap? | Design System | Before accepting Alias Color mode mappings | Open |
 | OD-013 | What approval and migration process governs adding, renaming, or removing an Alias Color product mode? | Design System + affected product owners | Before changing the current Alias Color mode set | Open |
-| OD-014 | Which intensity levels and ordering criteria apply to strokes and translucent color roles beyond the recorded opaque Bg, Fg, and Surface scale? | Design System | Before mapping the remaining stroke and translucent color roles | Open |
+| OD-014 | Which levels from the shared scale should Border expose across its color families, and how should translucent roles express alpha independently of intensity? | Design System | Before mapping Border and translucent color roles | Open |
 | OD-015 | Which published Alias Color paths and keys require compatibility, and what evidence allows each legacy alias to be retired? | Design System + affected library owners | Before renaming, hiding, or removing a published legacy alias | Open |
 
 ## Resolution format
