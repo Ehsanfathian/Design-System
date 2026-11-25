@@ -2,7 +2,7 @@
 
 ## Status
 
-**Accepted** for the layer boundary and naming model. The opaque intensity scale and its six-Mode Core mapping are recorded for review. Final Core assignments and the remaining intensity work are tracked under [OD-012 and OD-014](open-decisions.md).
+**Accepted** for the layer boundary and naming model. A single opaque intensity scale and its six-Mode Core mapping are recorded for review. Final Core assignments and the remaining intensity work are tracked under [OD-012 and OD-014](open-decisions.md).
 
 ## Ownership
 
@@ -18,22 +18,22 @@ Use lowercase, kebab-case path segments in the `Color` group of the `Alias` coll
 | --- | --- | --- |
 | Background | `Color/<family>/bg/<intensity>` | The color underneath foreground content in an element. |
 | Foreground | `Color/<family>/fg/<intensity>` | The color of visible content, such as text and glyphs. |
-| Stroke | `Color/<family>/stroke/<intensity>` | A boundary color when the role has a reusable intensity scale of its own. |
+| Border | `Color/<family>/border/<intensity>` | The color of a visible boundary or outline. |
 | Surface | `Color/surface/<intensity>` | A host surface on which elements can be placed. See the [Surface model](surface-model.md). |
 
-A family expresses reusable color meaning, such as `brand` or `neutral`. It keeps that meaning across products. The role determines which kind of visual property the color is for. The intensity is a descriptive adjective from the approved scale for that family and role. Illustrative paths include `Color/brand/bg/strong` and `Color/neutral/fg/bright`. These examples do not establish a scale or a Core assignment.
+A family expresses reusable color meaning, such as `brand` or `neutral`. It keeps that meaning across products. The role determines which kind of visual property the color is for. The intensity is an adjective from the shared scale. Every path uses the same spelling and definition for each level. Examples include `Color/brand/bg/deep`, `Color/neutral/fg/lightest`, and `Color/brand/border/deep`.
 
 Product and theme names belong to Mode metadata. Surrounding-surface choices and interaction states belong to the consuming contract. For example, `on-default-surface`, `on-light`, `on-dark`, and `hover` are outside the new Alias Color grammar. A usable light or dark tonal value within a role is independent of the name or presence of a theme.
 
-Focus is a consuming-state decision. When a focus indicator needs a line color, its contract selects a reusable `Color/<family>/stroke/<intensity>` alias. The Alias path describes the stroke color and its intensity. The consuming contract owns when the indicator is shown and its geometry.
+Focus is a consuming-state decision. When a focus indicator needs a line color, its contract selects a reusable `Color/<family>/border/<intensity>` alias. The Alias path describes the boundary color and its intensity. The consuming contract owns when the indicator is shown and its geometry.
 
 ## Intensity contract
 
-For each family and role, record the visual quality that intensity describes, the ordered adjectives, and the rule used to check that order. Use one axis for the scale. For an opaque tonal scale, the axis can be the lightness or depth of the color. For a translucent scale, document the axis and reference conditions before adding entries. If two properties need to vary independently, a single intensity word cannot represent both.
+Define the intensity names, order, and verification criteria in one shared scale. Each family and role exposes only the levels it needs. For example, if a future shared scale contains twelve levels, Border can expose four of them. Choose that Border subset once and use the same four names and definitions across its color families. Bg, Fg, and Surface can expose different subsets of the shared scale. Adding a level changes the shared scale and requires review.
 
 ### Opaque intensity scale
 
-For opaque Bg, Fg, and Surface colors, intensity is relative luminance (`L`) in the 0–1 range. Levels run from brightest to darkest. A role uses only the levels listed for it in the [six-Mode Core mapping](alias-color-mapping.md).
+For opaque Alias Color, intensity is relative luminance (`L`) in the 0–1 range. Levels run from brightest to darkest. The [six-Mode Core mapping](alias-color-mapping.md) lists the current subsets for Bg, Fg, and Surface.
 
 | Intensity | Relative luminance |
 | --- | --- |
@@ -43,7 +43,7 @@ For opaque Bg, Fg, and Surface colors, intensity is relative luminance (`L`) in 
 | `deep` | `0.005 <= L < 0.18` |
 | `deepest` | `0 <= L < 0.005` |
 
-The bounds define tonal bands. For translucent colors, alpha needs independent treatment so it does not change the meaning of the tonal levels. Stroke uses the same family and role structure. Its intensity inventory and Core assignments remain open.
+The bounds define tonal bands for all opaque roles, including Border. Selection of existing levels and Core assignments for Border remain open. For translucent colors, alpha needs independent treatment so it does not change the meaning of the tonal levels.
 
 A level must retain its definition and position in the scale in every supported Mode. Different Core values may satisfy the same level. A family only needs levels with a distinct, reusable purpose. Equal values in one Mode can be acceptable when the levels have different meanings and usable mappings elsewhere. Record any resulting loss of a visual distinction.
 
