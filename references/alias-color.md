@@ -2,7 +2,7 @@
 
 ## Status
 
-**Accepted** for the layer boundary and naming model. The intensity vocabulary, registry, and Core assignments remain **Open** under [OD-012 and OD-014](open-decisions.md).
+**Accepted** for the layer boundary and naming model. The opaque intensity scale and its six-Mode Core mapping are recorded for review. Final Core assignments and the remaining intensity work are tracked under [OD-012 and OD-014](open-decisions.md).
 
 ## Ownership
 
@@ -25,9 +25,25 @@ A family expresses reusable color meaning, such as `brand` or `neutral`. It keep
 
 Product and theme names belong to Mode metadata. Surrounding-surface choices and interaction states belong to the consuming contract. For example, `on-default-surface`, `on-light`, `on-dark`, and `hover` are outside the new Alias Color grammar. A usable light or dark tonal value within a role is independent of the name or presence of a theme.
 
+Focus is a consuming-state decision. When a focus indicator needs a line color, its contract selects a reusable `Color/<family>/stroke/<intensity>` alias. The Alias path describes the stroke color and its intensity. The consuming contract owns when the indicator is shown and its geometry.
+
 ## Intensity contract
 
 For each family and role, record the visual quality that intensity describes, the ordered adjectives, and the rule used to check that order. Use one axis for the scale. For an opaque tonal scale, the axis can be the lightness or depth of the color. For a translucent scale, document the axis and reference conditions before adding entries. If two properties need to vary independently, a single intensity word cannot represent both.
+
+### Opaque intensity scale
+
+For opaque Bg, Fg, and Surface colors, intensity is relative luminance (`L`) in the 0–1 range. Levels run from brightest to darkest. A role uses only the levels listed for it in the [six-Mode Core mapping](alias-color-mapping.md).
+
+| Intensity | Relative luminance |
+| --- | --- |
+| `lightest` | `L >= 0.85` |
+| `light` | `0.50 <= L < 0.85` |
+| `mid` | `0.18 <= L < 0.50` |
+| `deep` | `0.005 <= L < 0.18` |
+| `deepest` | `0 <= L < 0.005` |
+
+The bounds define tonal bands. For translucent colors, alpha needs independent treatment so it does not change the meaning of the tonal levels. Stroke uses the same family and role structure. Its intensity inventory and Core assignments remain open.
 
 A level must retain its definition and position in the scale in every supported Mode. Different Core values may satisfy the same level. A family only needs levels with a distinct, reusable purpose. Equal values in one Mode can be acceptable when the levels have different meanings and usable mappings elsewhere. Record any resulting loss of a visual distinction.
 
@@ -51,4 +67,4 @@ Record the following before taking a proposed alias into the published vocabular
 
 ## Compatibility
 
-Published names remain available as compatibility vocabulary until the replacement mapping and affected references are reviewed. Existing Surface role paths have the compatibility treatment described in the [Surface model](surface-model.md). Keep the new vocabulary separate from rollout and retirement decisions. [OD-015](open-decisions.md) tracks the compatibility mapping and retirement gate.
+Published names, including `Color/focus-ring/color`, remain available as compatibility vocabulary until the replacement mapping and affected references are reviewed. Existing Surface role paths have the compatibility treatment described in the [Surface model](surface-model.md). Keep the new vocabulary separate from rollout and retirement decisions. [OD-015](open-decisions.md) tracks the compatibility mapping and retirement gate.
