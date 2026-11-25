@@ -2,165 +2,53 @@
 
 ## Status
 
-**Accepted branch context and constraints; mappings listed under Open Decisions remain unresolved.**
+**Accepted** for the layer boundary and naming model. The intensity vocabulary, registry, and Core assignments remain **Open** under [OD-012 and OD-014](open-decisions.md).
 
-This reference is the source of truth for the current Alias Color branch. It narrows the broader token architecture to the work that is allowed in this branch without changing the accepted system model.
+## Ownership
 
-## Current State
+Alias Color is the shared vocabulary for color roles and intensity. Foundations owns this vocabulary and maps it to Core. Consumers choose and pair aliases in their own contracts. An alias must remain understandable when a particular product, consumer, interaction, or theme is absent.
 
-- Core Color has a single mode.
-- Core Color primitives are separated by product namespace:
-  - `lantern/*`
-  - `karat/*`
-  - `prime/*`
-- Core names represent available raw values. They must not express semantic intent, component meaning, or component state.
-- Alias Color is the next layer being designed on top of the existing Core Color structure.
-- The accepted dependency model is:
+The reference direction is `consumer token → Alias Color → Core Color`. Every Alias Color value is a direct reference to a Core Color variable. Core retains raw color values, product namespaces, and its single mode.
 
-```text
-Core → Alias → CST → Component
-```
+## Naming
 
-## Branch Scope
+Use lowercase, kebab-case path segments in the `Color` group of the `Alias` collection.
 
-This branch is limited to designing, reviewing, naming, and documenting **Alias Color**.
-
-Included:
-
-- Shared semantic color vocabulary
-- Alias Color naming and hierarchy
-- Product/Brand modes in Alias Color
-- Alias-to-Core mappings
-- Surface Alias semantics
-- Contrast and mapping review required to accept Alias Color values
-
-## Out of Scope
-
-Do not change any of the following in this branch without a separate explicit agreement:
-
-- CST names, values, structure, or versioning
-- Component tokens, variants, states, anatomy, behavior, or implementation
-- Core Color primitives, scales, namespaces, or the single-mode structure
-- Generated package topology, build pipeline, or runtime override mechanism
-- Non-color Alias domains
-
-Examples that may be used for validation do not authorize edits to CST or Components.
-
-## Architectural Constraints
-
-1. Foundations owns Core and system-wide Alias tokens.
-2. Core exposes raw product-namespaced primitives and carries no semantic or component meaning.
-3. Alias Color defines reusable semantic meaning shared by the system.
-4. Each Alias Color value must reference Core Color. Do not use a literal value, CST, or Component token as an Alias value.
-5. CST must reference Alias and must not reference Core directly.
-6. Alias names must not contain a component name, component variant, or component interaction state.
-7. A product mode may change the Core primitive behind an Alias, but it must not change the accepted semantic meaning of that Alias.
-8. Unresolved mappings or naming choices remain open decisions; do not convert them into policy or implementation by assumption.
-
-The dependency rules are therefore:
-
-```text
-Alias Color → Core Color only
-CST Color   → Alias Color only
-```
-
-## Alias Color Contract
-
-An Alias Color token answers: **What semantic color role does this value serve across the system?**
-
-An accepted Alias Color token must have:
-
-- A reusable semantic name independent of any component
-- One stable meaning across all product modes
-- A Core Color reference for every supported product mode
-- A documented contrast or contextual constraint when legibility depends on surrounding color
-- Evidence that the role belongs at system level rather than in a CST
-
-Naming rules:
-
-- Prefer semantic intent over raw color, scale, product, or component names.
-- Keep product names in mode names, not in the shared Alias variable name.
-- Do not create separate Alias tokens only because two products currently use different Core values; modes own that mapping difference.
-- Do not create an Alias merely to complete a naming matrix. A reusable semantic decision must exist.
-- Multiple CSTs may consume the same Alias when their component meanings differ but the required semantic color role is the same.
-
-## Product and Brand Modes
-
-Product/Brand modes remain in the Alias Color collection.
-
-The supported modes for this branch are:
-
-| Alias mode | Core Color source | Contract |
+| Role | Path | Responsibility |
 | --- | --- | --- |
-| `Lantern` | `lantern/*` | Maps shared Alias semantics to Lantern Core primitives |
-| `Karat` | `karat/*` | Maps shared Alias semantics to Karat Core primitives |
-| `Prime` | `prime/*` | Maps shared Alias semantics to Prime Core primitives |
+| Background | `Color/<family>/bg/<intensity>` | The color underneath foreground content in an element. |
+| Foreground | `Color/<family>/fg/<intensity>` | The color of visible content, such as text and glyphs. |
+| Stroke | `Color/<family>/stroke/<intensity>` | A boundary color when the role has a reusable intensity scale of its own. |
+| Surface | `Color/surface/<intensity>` | A host surface on which elements can be placed. See the [Surface model](surface-model.md). |
 
-The Alias variable name and semantic definition stay identical across these modes. Only the referenced Core primitive may change.
+A family expresses reusable color meaning, such as `brand` or `neutral`. It keeps that meaning across products. The role determines which kind of visual property the color is for. The intensity is a descriptive adjective from the approved scale for that family and role. Illustrative paths include `Color/brand/bg/strong` and `Color/neutral/fg/bright`. These examples do not establish a scale or a Core assignment.
 
-The `Prime` and `Ayarin` branches shown in [`multi-product-model.md`](multi-product-model.md) illustrate product-owned CST and component implementations. They are not the Alias Color mode contract for this branch.
+Product and theme names belong to Mode metadata. Surrounding-surface choices and interaction states belong to the consuming contract. For example, `on-default-surface`, `on-light`, `on-dark`, and `hover` are outside the new Alias Color grammar. A usable light or dark tonal value within a role is independent of the name or presence of a theme.
 
-Do not add, remove, merge, or rename a product mode as part of routine Alias token work. Treat that as an explicit architecture decision.
+## Intensity contract
 
-## Surface Contract
+For each family and role, record the visual quality that intensity describes, the ordered adjectives, and the rule used to check that order. Use one axis for the scale. For an opaque tonal scale, the axis can be the lightness or depth of the color. For a translucent scale, document the axis and reference conditions before adding entries. If two properties need to vary independently, a single intensity word cannot represent both.
 
-[`surface-model.md`](surface-model.md) remains the canonical definition of Surface semantics. The accepted Surface Alias Color vocabulary for this branch is:
+A level must retain its definition and position in the scale in every supported Mode. Different Core values may satisfy the same level. A family only needs levels with a distinct, reusable purpose. Equal values in one Mode can be acceptable when the levels have different meanings and usable mappings elsewhere. Record any resulting loss of a visual distinction.
 
-| Alias | Meaning |
-| --- | --- |
-| `surface/base` | Base surface of the current context |
-| `surface/raised` | Surface one level above the base context |
-| `surface/sunken` | Recessed or inset surface relative to its environment |
-| `surface/floating` | Independent floating surface such as a popover or dropdown |
-| `surface/inverse` | Contrast reversed relative to the current theme |
-| `surface/fixed/light` | Always light, independent of the current theme |
-| `surface/fixed/dark` | Always dark, independent of the current theme |
+Evaluate contrast on resolved color pairs. For translucent colors, composite the color over its intended backdrop before evaluating the pair. Record pair guidance and verification separately from token names. A background intensity and a foreground intensity with similar names do not form a guaranteed accessible pair.
 
-### Component-state boundary
+## Modes and Core mappings
 
-Component interaction states are not Surface Alias roles. Do not create:
+The current Foundations V3 collection contains Lantern, Karat, and Prime in Light and Dark. Each alias resolves to one Core color for every supported Mode. The product namespace in Core supplies the raw values for that product. A product that supports only a light theme can implement the same vocabulary with its supported Modes. A light Mode may still include tonal values suitable for use in a dark composition.
 
-```text
-surface/hover
-surface/pressed
-surface/selected
-surface/disabled
-surface/loading
-```
+Keep separate records for the semantic vocabulary and the Mode inventory. Changes to the current Mode set follow [OD-013](open-decisions.md). Exact Core assignments and reference-pair contrast stay in [OD-012](open-decisions.md).
 
-The CST owns the state decision and selects an existing semantic Surface Alias:
+## Adding or revising an alias
 
-```text
-Core: neutral primitive
-        ↓
-Alias: surface/sunken
-        ↓
-CST: list-item/filled/bg/hover
-        ↓
-Component: Hover state
-```
+Record the following before taking a proposed alias into the published vocabulary.
 
-If a component state appears to need a new color, first identify its reusable visual meaning. Create a new system Alias only when that meaning is stable, semantic, and reusable beyond the component.
+1. The family, visual role, and intensity definition.
+2. Its position in the role's scale and how to verify that position.
+3. Its direct Core reference in every supported Mode.
+4. The contrast guidance for representative pairs, when legibility depends on the color.
+5. Whether an existing alias is a semantic match and which published paths or keys would be affected.
 
-## Open Decisions
+## Compatibility
 
-The following items are not settled by this branch context:
-
-1. **Exact mode mappings:** the Core primitive referenced by each Alias in `Lantern`, `Karat`, and `Prime`, including contrast validation for each contextual pairing. Track this as [`OD-012`](open-decisions.md).
-2. **Theme versus product-mode resolution:** how product overrides are resolved and where theme behavior ends and product mode begins. Track this as [`OD-008`](open-decisions.md).
-3. **Source and delivery format:** token source format, build pipeline, and generated package topology. Track this as [`OD-007`](open-decisions.md).
-4. **Surface implementation details:** exact Core values and any elevation mechanics for Surface roles, as noted in [`surface-model.md`](surface-model.md).
-5. **Mode lifecycle:** the approval and migration process for adding, renaming, or removing an Alias product mode. Track this as [`OD-013`](open-decisions.md).
-
-Until these decisions are accepted, document proposals and evidence without changing CST, Components, or the accepted architecture.
-
-## Required Reading Order
-
-For Alias Color work, read:
-
-1. [`../SKILL.md`](../SKILL.md)
-2. [`token-architecture.md`](token-architecture.md)
-3. [`surface-model.md`](surface-model.md)
-4. This reference
-5. [`architecture.md`](architecture.md) when layer ownership or dependency direction is in question
-
+Published names remain available as compatibility vocabulary until the replacement mapping and affected references are reviewed. Existing Surface role paths have the compatibility treatment described in the [Surface model](surface-model.md). Keep the new vocabulary separate from rollout and retirement decisions. [OD-015](open-decisions.md) tracks the compatibility mapping and retirement gate.
