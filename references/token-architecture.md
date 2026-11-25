@@ -41,7 +41,7 @@ Raw values and scales. Examples include a color ramp, spacing values, opacity va
 
 ### Alias
 
-Reusable semantic roles shared across multiple components or contexts. The [Alias Color contract](alias-color.md) defines the family, role, and intensity model for new color aliases. Existing color paths listed here are compatibility examples.
+Reusable semantic roles shared across multiple components or contexts. Alias groups start with the concept they represent, such as `bg`, `fg`, `border`, `content`, `surface`, `size`, and `corner-radius`. Families sit below the concept where needed. Variable type is metadata. The [Alias Color contract](alias-color.md) defines the role-first paths for new color aliases. Existing color paths listed here are compatibility examples.
 
 ```text
 surface/base
@@ -66,7 +66,7 @@ The lifecycle of a CST follows the component API. If states, anatomy, or variant
 
 ## Naming rules
 
-- Use the [Alias Color naming model](alias-color.md) for new color aliases, with a reusable role and an intensity adjective.
+- Use the [Alias Color naming model](alias-color.md) for new color aliases, with the visual role first and an adjective from the shared intensity scale.
 
 - Prefer semantic intent over raw value names outside Core.
 - Preserve component context in CST names.
